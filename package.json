@@ -1,0 +1,18 @@
+{
+  "name": "fitto-app",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "vite frontend --host 0.0.0.0",
+    "build": "vite build frontend",
+    "dev:api": "node --watch backend/server.js"
+  },
+  "dependencies": {
+    "lucide-react": "^1.46.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "recharts": "^3.10.1",
+    "vite": "^8.3.0"
+  }
+}
