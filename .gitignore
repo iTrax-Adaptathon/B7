@@ -18,6 +18,7 @@ frontend/dist/
 dist/
 dist-ssr/
 *.local
+.env
 .env.local
 .env.*.local
 npm-debug.log*

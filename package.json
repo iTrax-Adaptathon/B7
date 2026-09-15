@@ -3,12 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "node --env-file=.env backend/server.js",
     "dev": "vite frontend --host 0.0.0.0",
     "build": "vite build frontend",
-    "dev:api": "node --watch backend/server.js"
+    "dev:api": "node --watch --env-file=.env backend/server.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.109.0",
     "lucide-react": "^1.46.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

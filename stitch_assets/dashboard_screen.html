@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FITTO - Modern Tactile Dashboard</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            tactile: {
+              bg: '#EFF3F6',
+              sidebar: '#202226',
+              sidebarLight: '#2C2F35',
+              surface: '#FFFFFF',
+              surfaceMuted: '#F4F7F9',
+              coral: '#FF5733',
+              coralHover: '#EE4A27',
+              darkText: '#181A1E',
+              mutedText: '#8792A2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Neumorphic Styles -->
+<style data-purpose="neumorphic-shadows">
+    /* Tactile soft embossed and raised shadow systems */
+    .neu-card {
+      background: #FFFFFF;
+      box-shadow: 10px 10px 24px rgba(166, 180, 200, 0.25),
+                  -10px -10px 24px rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+    
+    .neu-inset {
+      background: #E8EDF2;
+      box-shadow: inset 3px 3px 6px rgba(166, 180, 200, 0.35),
+                  inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+    }
+
+    .neu-button-primary {
+      background: linear-gradient(135deg, #FF6442 0%, #E84925 100%);
+      box-shadow: 0 10px 22px rgba(255, 87, 51, 0.35),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .neu-button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(255, 87, 51, 0.42),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .neu-button-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 5px 12px rgba(255, 87, 51, 0.3);
+    }
+
+    .neu-fab {
+      background: #202226;
+      box-shadow: 6px 6px 18px rgba(32, 34, 38, 0.35),
+                  -6px -6px 16px rgba(255, 255, 255, 0.8);
+      transition: all 0.2s ease;
+    }
+
+    .neu-fab:hover {
+      transform: scale(1.05);
+      box-shadow: 8px 8px 22px rgba(32, 34, 38, 0.45);
+    }
+
+    .sidebar-neu-active {
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.15),
+                  inset -2px -2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-icon-well {
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35),
+                  -1px -1px 3px rgba(255, 255, 255, 0.08);
+    }
+  </style>
+<!-- END: Custom Neumorphic Styles -->
+</head>
+<body class="bg-[#EFF3F6] text-tactile-darkText font-sans min-h-screen flex antialiased select-none">
+<!-- BEGIN: Left Sidebar Navigation -->
+<aside class="w-64 min-h-screen bg-tactile-sidebar flex flex-col justify-between p-6 m-4 rounded-[2.5rem] shadow-2xl border border-white/10 shrink-0" data-purpose="sidebar-navigation">
+<!-- Brand and Navigation Links -->
+<div class="flex flex-col gap-8">
+<!-- App Brand Logo -->
+<div class="flex items-center gap-3.5 px-3 pt-2">
+<div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FF5733] to-[#FF7E61] flex items-center justify-center text-white shadow-lg shadow-[#FF5733]/30">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+</div>
+<span class="text-white text-xl font-bold tracking-tight">FITTO</span>
+</div>
+<!-- Main Navigation Menu -->
+<nav class="flex flex-col gap-2">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-white font-semibold sidebar-neu-active transition-all group" href="#">
+<div class="w-8 h-8 rounded-xl bg-[#2D3037] flex items-center justify-center text-[#FF5733] sidebar-icon-well">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+</div>
+<span class="text-sm">Dashboard</span>
+</a>
+<!-- Workout -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-gray-400 font-medium hover:text-white hover:bg-white/5 transition-all group" href="#">
+<div class="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-gray-400 group-hover:text-white">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="m6.5 6.5 11 11"></path>
+<path d="m21 21-1-1"></path>
+<path d="m3 3 1 1"></path>
+<path d="m18 22 4-4"></path>
+<path d="m2 6 4-4"></path>
+<path d="m3 10 7-7"></path>
+<path d="m14 21 7-7"></path>
+</svg>
+</div>
+<span class="text-sm">Workout</span>
+</a>
+<!-- History -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-gray-400 font-medium hover:text-white hover:bg-white/5 transition-all group" href="#">
+<div class="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-gray-400 group-hover:text-white">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 14 14"></polyline>
+</svg>
+</div>
+<span class="text-sm">History</span>
+</a>
+<!-- Progress -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-gray-400 font-medium hover:text-white hover:bg-white/5 transition-all group" href="#">
+<div class="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-gray-400 group-hover:text-white">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+<polyline points="16 7 22 7 22 13"></polyline>
+</svg>
+</div>
+<span class="text-sm">Progress</span>
+</a>
+<!-- Community -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-gray-400 font-medium hover:text-white hover:bg-white/5 transition-all group" href="#">
+<div class="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-gray-400 group-hover:text-white">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+</svg>
+</div>
+<span class="text-sm">Community</span>
+</a>
+<!-- Profile -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-gray-400 font-medium hover:text-white hover:bg-white/5 transition-all group" href="#">
+<div class="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-gray-400 group-hover:text-white">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<span class="text-sm">Profile</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer Promo Card -->
+<div class="bg-[#272A30] border border-white/5 rounded-3xl p-4 flex flex-col gap-3 relative overflow-hidden" data-purpose="sidebar-promo-widget">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-[#FF5733]/15 rounded-full blur-xl pointer-events-none"></div>
+<p class="text-xs text-white font-semibold leading-snug">Level up your fitness program?</p>
+<p class="text-[11px] text-gray-400 leading-relaxed">Unlock personalized plans &amp; weekly live coaching.</p>
+<button class="mt-1 w-full py-2 bg-white text-tactile-darkText font-bold text-xs rounded-full shadow-md hover:bg-gray-100 transition-colors">
+        Upgrade Pro
+      </button>
+</div>
+</aside>
+<!-- END: Left Sidebar Navigation -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 flex flex-col p-8 max-w-5xl mx-auto overflow-y-auto" data-purpose="main-dashboard">
+<!-- Header Greeting -->
+<header class="mb-8">
+<h1 class="text-3xl lg:text-4xl font-extrabold text-tactile-darkText tracking-tight">
+        Good morning, Alex
+      </h1>
+</header>
+<!-- Main Content Cards Container -->
+<div class="flex flex-col gap-6">
+<!-- Hero Workout Card -->
+<section class="neu-card rounded-[2rem] p-8 flex flex-col justify-between" data-purpose="hero-workout-card">
+<div class="space-y-3">
+<!-- Uppercase Subtitle Label -->
+<div class="text-[11px] font-bold tracking-widest text-[#8E9AAB] uppercase">
+            Today's Workout
+          </div>
+<!-- Main Title -->
+<h2 class="text-3xl font-extrabold text-tactile-darkText tracking-tight">
+            Full Body
+          </h2>
+<!-- Workout Metadata -->
+<div class="flex items-center gap-6 pt-1 text-tactile-mutedText text-sm font-semibold">
+<!-- Duration -->
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-tactile-mutedText" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 15 15"></polyline>
+</svg>
+<span>45 min</span>
+</div>
+<!-- Exercises Count -->
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-tactile-mutedText" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"></path>
+</svg>
+<span>6 exercises</span>
+</div>
+</div>
+</div>
+<!-- Start Workout CTA Button -->
+<div class="pt-8">
+<button class="w-full neu-button-primary text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-3 text-base group" data-purpose="start-workout-button">
+<svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewbox="0 0 24 24">
+<polygon points="6 4 20 12 6 20 6 4"></polygon>
+</svg>
+<span>Start workout</span>
+</button>
+</div>
+</section>
+<!-- Middle Grid: Weekly Activity & Current Status -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6" data-purpose="status-activity-grid">
+<!-- Left Card: Weekly Activity -->
+<div class="neu-card rounded-[2rem] p-7 flex flex-col justify-between h-44">
+<div class="space-y-4">
+<span class="text-[11px] font-bold tracking-widest text-[#8E9AAB] uppercase">
+              Weekly Activity
+            </span>
+<!-- Segmented Progress Bars (Neumorphic Inset Pill Indicators) -->
+<div class="grid grid-cols-4 gap-2.5 pt-1">
+<div class="neu-inset h-3 rounded-full overflow-hidden">
+<!-- Bar 1: Empty -->
+</div>
+<div class="neu-inset h-3 rounded-full overflow-hidden">
+<!-- Bar 2: Empty -->
+</div>
+<div class="neu-inset h-3 rounded-full overflow-hidden">
+<!-- Bar 3: Empty -->
+</div>
+<div class="neu-inset h-3 rounded-full overflow-hidden">
+<!-- Bar 4: Empty -->
+</div>
+</div>
+</div>
+<!-- Session Statistics -->
+<div class="pt-2">
+<span class="text-2xl font-extrabold text-tactile-darkText">0</span>
+<span class="text-sm font-medium text-tactile-mutedText ml-1">/ 4 sessions</span>
+</div>
+</div>
+<!-- Right Card: Current Status -->
+<div class="neu-card rounded-[2rem] p-7 flex flex-col justify-between h-44">
+<span class="text-[11px] font-bold tracking-widest text-[#8E9AAB] uppercase">
+            Current Status
+          </span>
+<div class="flex items-center gap-3 pb-1">
+<span class="w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-md shadow-emerald-500/30 inline-block animate-pulse"></span>
+<span class="text-3xl font-extrabold text-[#2F6B55] tracking-tight">
+              Ready
+            </span>
+</div>
+</div>
+</section>
+<!-- Bottom Card: Recent Activity -->
+<section class="neu-card rounded-[2rem] p-8 min-h-[140px] flex flex-col justify-center" data-purpose="recent-activity-card">
+<span class="text-[11px] font-bold tracking-widest text-[#8E9AAB] uppercase mb-2">
+          Recent Activity
+        </span>
+<p class="text-sm font-medium text-tactile-mutedText/80">
+          Your first workout will show up here once you finish it.
+        </p>
+</section>
+</div>
+</main>
+<!-- END: Main Content Area -->
+<!-- BEGIN: Floating Action Button -->
+<aside class="fixed bottom-8 right-8" data-purpose="floating-assistant">
+<button aria-label="AI Assistant" class="w-14 h-14 neu-fab rounded-full flex items-center justify-center text-white focus:outline-none">
+<!-- Chat Speech Bubble Icon with rounded pill style -->
+<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</aside>
+<!-- END: Floating Action Button -->
+</body></html>
